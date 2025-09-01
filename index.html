@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mark's professional portfolio showcasing web development projects using HTML, CSS, JavaScript, and React." />
   <title>Mark's Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Navbar -->
+  <!-- Dark Mode Toggle -->
+  <button id="darkToggle" aria-label="Toggle dark mode">🌙</button>
+
+  <!-- Header -->
   <header>
     <nav>
       <h1 class="logo">Mark</h1>
@@ -21,57 +27,82 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section id="hero">
-    <h2>Hi, I’m Mark 👋</h2>
-    <p>Building clean, responsive web apps with HTML, CSS, and React.</p>
-    <a href="#projects" class="btn">View My Work</a>
-  </section>
+  <main>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I’m learning web development and building real-world projects to become a professional front-end developer.</p>
-    <div class="skills">
-      <span class="skill">HTML</span>
-      <span class="skill">CSS</span>
-      <span class="skill">JavaScript</span>
-      <span class="skill">React</span>
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section id="hero">
+      <h2>Hi, I’m Mark 👋</h2>
+      <p>Crafting clean, responsive web apps with HTML, CSS, and React.</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </section>
 
-  <!-- Projects Section -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects-grid">
-      <div class="project">
-        <h3>To-Do List App ✅</h3>
-        <p>A simple task manager with add, delete, and localStorage features.</p>
-        <a href="#" target="_blank" class="btn">Live Demo</a>
-        <a href="#" target="_blank" class="btn">GitHub</a>
+    <!-- About Section -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>I’m a passionate web developer focused on building real-world projects and growing my front-end skills.</p>
+      <div class="skills">
+        <span class="skill">HTML</span>
+        <span class="skill">CSS</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">React</span>
+        <span class="skill">Git</span>
+        <span class="skill">Figma</span>
       </div>
-      <div class="project">
-        <h3>Weather App 🌦️</h3>
-        <p>Fetches live weather data from OpenWeather API.</p>
-        <a href="#" target="_blank" class="btn">Live Demo</a>
-        <a href="#" target="_blank" class="btn">GitHub</a>
-      </div>
-      <!-- Add more projects here -->
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-    <p>GitHub: <a href="https://github.com/yourusername" target="_blank">yhghggusername</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank">yourusername</a></p>
-  </section>
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <article class="project">
+          <h3>To-Do List App ✅</h3>
+          <p>A task manager with add/delete functionality and localStorage persistence.</p>
+          <a href="#" target="_blank" class="btn">Live Demo</a>
+          <a href="#" target="_blank" class="btn">GitHub</a>
+        </article>
+        <article class="project">
+          <h3>Weather App 🌦️</h3>
+          <p>Displays live weather data using the OpenWeather API.</p>
+          <a href="#" target="_blank" class="btn">Live Demo</a>
+          <a href="#" target="_blank" class="btn">GitHub</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+      <p>GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank">yourusername</a></p>
+    </section>
+
+  </main>
+
+  <!-- Scroll to Top -->
+  <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
 
   <!-- Footer -->
   <footer>
     <p>© 2025 Mark. Built with ❤️ using HTML, CSS, and React.</p>
   </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Scroll to top
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.onscroll = () => {
+      scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    };
+    scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Dark mode toggle
+    const toggleBtn = document.getElementById('darkToggle');
+    toggleBtn.onclick = () => {
+      document.body.classList.toggle('dark-mode');
+      toggleBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    };
+  </script>
 
 </body>
 </html>
