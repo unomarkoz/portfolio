@@ -215,4 +215,52 @@ footer {
   .projects-grid {
     grid-template-columns: 1fr;
   }
+  @media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  #hero h2 {
+    font-size: 2rem;
+  }
+
+  #hero p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .skills {
+    justify-content: center;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #darkToggle {
+    top: 10px;
+    right: 10px;
+    padding: 0.4rem;
+    font-size: 1rem;
+  }
+
+  #scrollTopBtn {
+    bottom: 20px;
+    right: 20px;
+    padding: 0.4rem 0.8rem;
+    font-size: 1rem;
+  }
+}
+
 }
