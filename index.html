@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mark's Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Navigation -->
   <nav>
     <h1 class="logo">Mark</h1>
     <button id="menuToggle" aria-label="Toggle navigation">☰</button>
@@ -18,29 +20,65 @@
     <button id="darkToggle" aria-label="Toggle dark mode">🌙</button>
   </nav>
 
-  <section id="about">
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-content">
+      <h2>Hi, I'm Mark 👋</h2>
+      <p>A passionate developer creating clean, responsive, and user-friendly web experiences.</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
     <h2>About Me</h2>
-    <p>Hello! I'm Mark, a passionate developer who loves building clean and responsive websites. Welcome to my portfolio!</p>
+    <p>Hello! I'm Mark, a dedicated software developer who enjoys building elegant websites and applications. I love solving problems and learning new technologies.</p>
   </section>
 
-  <section id="projects">
+  <!-- Projects Section -->
+  <section id="projects" class="section">
     <h2>Projects</h2>
-    <ul>
-      <li>🌐 Personal Portfolio Website</li>
-      <li>📱 Mobile App UI Design</li>
-      <li>🧠 AI Chatbot Integration</li>
-    </ul>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>🌐 Personal Portfolio Website</h3>
+        <p>A modern portfolio to showcase my skills and projects with responsive design.</p>
+        <div class="project-links">
+          <a href="https://your-live-demo-link.com" target="_blank" class="project-btn">Live Demo</a>
+          <a href="https://github.com/yourusername/portfolio" target="_blank" class="project-btn">GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>📱 Mobile App UI Design</h3>
+        <p>Designed sleek and intuitive interfaces for mobile applications.</p>
+        <div class="project-links">
+          <a href="https://your-live-demo-link.com" target="_blank" class="project-btn">Live Demo</a>
+          <a href="https://github.com/yourusername/mobile-ui" target="_blank" class="project-btn">GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>🧠 AI Chatbot Integration</h3>
+        <p>Implemented AI chatbot solutions for smarter customer interactions.</p>
+        <div class="project-links">
+          <a href="https://your-live-demo-link.com" target="_blank" class="project-btn">Live Demo</a>
+          <a href="https://github.com/yourusername/ai-chatbot" target="_blank" class="project-btn">GitHub</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="contact">
+  <!-- Contact Section -->
+  <section id="contact" class="section">
     <h2>Contact</h2>
-    <p>Email me at <a href="mailto:mark@example.com">mark@example.com</a></p>
+    <p>Let's connect! You can email me at <a href="mailto:mark@example.com">mark@example.com</a></p>
   </section>
 
+  <!-- Scroll to top -->
   <button id="scrollTopBtn">↑</button>
 
   <script>
-    // Scroll to top
+    // Scroll to top button
     const scrollBtn = document.getElementById('scrollTopBtn');
     window.onscroll = () => {
       scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
@@ -54,7 +92,6 @@
       document.body.classList.add('dark-mode');
       toggleBtn.textContent = '☀️';
     }
-
     toggleBtn.onclick = () => {
       document.body.classList.toggle('dark-mode');
       const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
