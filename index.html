@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mark's Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <!-- Navbar -->
   <header>
     <nav>
@@ -22,50 +24,54 @@
   <!-- Hero Section -->
   <section id="hero">
     <h2>Hi, I’m Mark 👋</h2>
-    <p>A Front-End Developer in progress 🚀</p>
+    <p>Building clean, responsive web apps with HTML, CSS, and React.</p>
     <a href="#projects" class="btn">View My Work</a>
   </section>
 
   <!-- About Section -->
   <section id="about">
     <h2>About Me</h2>
-    <p>
-      I’m learning web development and building real-world projects to become a
-      professional front-end developer.
-    </p>
-    <p><strong>Skills:</strong> HTML, CSS, JavaScript, React</p>
+    <p>I’m learning web development and building real-world projects to become a professional front-end developer.</p>
+    <div class="skills">
+      <span class="skill">HTML</span>
+      <span class="skill">CSS</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">React</span>
+    </div>
   </section>
 
   <!-- Projects Section -->
   <section id="projects">
     <h2>Projects</h2>
-    <div class="project">
-      <h3>To-Do List App ✅</h3>
-      <p>A simple task manager with add, delete, and localStorage features.</p>
-      <a href="#" target="_blank">Live Demo</a>
-      <a href="#" target="_blank">GitHub</a>
+    <div class="projects-grid">
+      <div class="project">
+        <h3>To-Do List App ✅</h3>
+        <p>A simple task manager with add, delete, and localStorage features.</p>
+        <a href="#" target="_blank" class="btn">Live Demo</a>
+        <a href="#" target="_blank" class="btn">GitHub</a>
+      </div>
+      <div class="project">
+        <h3>Weather App 🌦️</h3>
+        <p>Fetches live weather data from OpenWeather API.</p>
+        <a href="#" target="_blank" class="btn">Live Demo</a>
+        <a href="#" target="_blank" class="btn">GitHub</a>
+      </div>
+      <!-- Add more projects here -->
     </div>
-
-    <div class="project">
-      <h3>Weather App 🌦️</h3>
-      <p>Fetches live weather data from OpenWeather API.</p>
-      <a href="#" target="_blank">Live Demo</a>
-      <a href="#" target="_blank">GitHub</a>
-    </div>
-    <!-- More projects will go here -->
   </section>
 
   <!-- Contact Section -->
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:unomark2g@gmail.com">unomark2g@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/unomarkoz" target="_blank">unomarkoz</a></p>
-    <!--<p>LinkedIn: <a href="https://linkedin.com/in/unomark" target="_blank">unomark</a></p>-->
+    <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+    <p>GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/yourusername" target="_blank">yourusername</a></p>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Mark. All rights reserved.</p>
+    <p>© 2025 Mark. Built with ❤️ using HTML, CSS, and React.</p>
   </footer>
+
 </body>
 </html>
