@@ -1,19 +1,37 @@
 const taskInput = document.getElementById('task-input');
 const taskList = document.getElementById('task-list');
 const addTaskBtn = document.getElementById('add-task');
+const prioritySelect = document.getElementById('priority-select');
+const dateInput = document.getElementById('task-date');
+const timeInput = document.getElementById('task-time');
+const alertSound = document.getElementById('alert-sound');
+
+let audioUnlocked = false;
+
+document.body.addEventListener('click', () => {
+  if (!audioUnlocked && alertSound) {
+    alertSound.play().then(() => {
+      alertSound.pause();
+      alertSound.currentTime = 0;
+      audioUnlocked = true;
+    }).catch(() => {});
+  }
+}, { once: true });
 
 addTaskBtn.addEventListener('click', () => {
   const text = taskInput.value.trim();
-  const priority = document.getElementById('priority-select').value;
-  const date = document.getElementById('task-date').value;
-  const time = document.getElementById('task-time').value;
+  const priority = prioritySelect.value;
+  const date = dateInput.value;
+  const time = timeInput.value;
 
-  if (!text) return;
+  if (!text || !date || !time) return;
 
-  const datetime = date && time ? `${date}T${time}` : '';
+  const datetime = `${date}T${time}`;
   const li = createTaskElement(text, priority, datetime);
   taskList.appendChild(li);
   taskInput.value = '';
+  dateInput.value = '';
+  timeInput.value = '';
   saveTasks();
 });
 
@@ -30,23 +48,22 @@ function createTaskElement(text, priority = 'medium', datetime = '') {
   li.draggable = true;
   li.dataset.datetime = datetime;
 
-  // Priority stars
   const starSpan = document.createElement('span');
   starSpan.textContent = priority === 'high' ? '⭐️⭐️⭐️' :
                          priority === 'medium' ? '⭐️⭐️' : '⭐️';
 
-  // Task text
   const taskText = document.createElement('span');
   taskText.textContent = text;
 
-  // Date/time display
   const dateTimeSpan = document.createElement('span');
   if (datetime) {
     const dt = new Date(datetime);
     dateTimeSpan.textContent = ` ⏰ ${dt.toLocaleString()}`;
   }
 
-  // Delete button
+  const countdownSpan = document.createElement('span');
+  countdownSpan.classList.add('countdown');
+
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = '🗑️';
   deleteBtn.addEventListener('click', () => {
@@ -54,18 +71,8 @@ function createTaskElement(text, priority = 'medium', datetime = '') {
     saveTasks();
   });
 
-  // Assemble
-  li.appendChild(starSpan);
-  li.appendChild(taskText);
-  li.appendChild(dateTimeSpan);
-  // Countdown display
-const countdownSpan = document.createElement('span');
-countdownSpan.classList.add('countdown');
-li.appendChild(countdownSpan);
+  li.append(starSpan, taskText, dateTimeSpan, countdownSpan, deleteBtn);
 
-  li.appendChild(deleteBtn);
-
-  // Drag events
   li.addEventListener('dragstart', handleDragStart);
   li.addEventListener('dragover', handleDragOver);
   li.addEventListener('drop', handleDrop);
@@ -91,8 +98,8 @@ function handleDrop(e) {
   e.preventDefault();
   if (this !== draggedItem) {
     const list = this.parentNode;
-    const draggedIndex = Array.from(list.children).indexOf(draggedItem);
-    const targetIndex = Array.from(list.children).indexOf(this);
+    const draggedIndex = [...list.children].indexOf(draggedItem);
+    const targetIndex = [...list.children].indexOf(this);
 
     if (draggedIndex < targetIndex) {
       list.insertBefore(draggedItem, this.nextSibling);
@@ -108,14 +115,13 @@ function handleDragEnd() {
 }
 
 function saveTasks() {
-  const tasks = [];
-  document.querySelectorAll('#task-list li').forEach(li => {
+  const tasks = [...document.querySelectorAll('#task-list li')].map(li => {
     const text = li.querySelector('span:nth-child(2)').textContent;
     const priority = li.classList.contains('high') ? 'high' :
                      li.classList.contains('low') ? 'low' : 'medium';
     const completed = li.classList.contains('completed');
     const datetime = li.dataset.datetime || '';
-    tasks.push({ text, priority, completed, datetime });
+    return { text, priority, completed, datetime };
   });
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
@@ -136,16 +142,13 @@ function showNotification(taskText) {
       icon: '🕒'
     });
 
-    // Play sound
-    const sound = document.getElementById('alert-sound');
-    if (sound) {
-      sound.play().catch(err => {
+    if (audioUnlocked && alertSound) {
+      alertSound.play().catch(err => {
         console.warn('Sound playback failed:', err);
       });
     }
   }
 }
-
 
 function checkNotifications() {
   const now = new Date();
@@ -155,7 +158,6 @@ function checkNotifications() {
 
     const taskTime = new Date(datetime);
     const diff = taskTime - now;
-
     const taskText = li.querySelector('span:nth-child(2)').textContent;
 
     if (diff <= 0 && !li.classList.contains('notified')) {
@@ -163,18 +165,13 @@ function checkNotifications() {
       li.classList.add('notified');
       li.querySelector('.countdown').textContent = '⏰ Time’s up!';
       li.style.backgroundColor = '#ffdddd';
-setTimeout(() => {
-  li.style.backgroundColor = '';
-}, 2000);
-
+      setTimeout(() => {
+        li.style.backgroundColor = '';
+      }, 2000);
     }
   });
 }
 
-
-if (Notification.permission !== 'granted') {
-  Notification.requestPermission();
-}
 function updateCountdowns() {
   const now = new Date();
   document.querySelectorAll('#task-list li').forEach(li => {
@@ -195,16 +192,16 @@ function updateCountdowns() {
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-    if (days > 0) {
-      countdownSpan.textContent = `⏳ ${days}d ${hours}h ${minutes}m`;
-    } else {
-      countdownSpan.textContent = `⏳ ${hours}h ${minutes}m ${seconds}s`;
-    }
+    countdownSpan.textContent = days > 0
+      ? `⏳ ${days}d ${hours}h ${minutes}m`
+      : `⏳ ${hours}h ${minutes}m ${seconds}s`;
   });
 }
 
+if (Notification.permission !== 'granted') {
+  Notification.requestPermission();
+}
+
 setInterval(updateCountdowns, 1000);
-
-
-//setInterval(checkNotifications, 30000); // Check every 30 seconds
+setInterval(checkNotifications, 30000);
 window.addEventListener('load', loadTasks);

@@ -11,8 +11,8 @@
     <h1>📝 Task Manager</h1>
 
     <div class="input-group">
-      <input type="text" id="task-input" placeholder="Enter task" />
-      
+      <input type="text" id="task-input" placeholder="Enter task" required />
+
       <select id="priority-select">
         <option value="low">⭐ Low</option>
         <option value="medium" selected>⭐⭐ Medium</option>
@@ -20,8 +20,8 @@
       </select>
 
       <div class="datetime-group">
-        <input type="date" id="task-date" />
-        <input type="time" id="task-time" />
+        <input type="date" id="task-date" required />
+        <input type="time" id="task-time" required />
       </div>
 
       <button id="add-task">Add Task</button>
@@ -30,8 +30,9 @@
     <ul id="task-list"></ul>
   </div>
 
+  
+  
   <script src="script.js"></script>
   <audio id="alert-sound" src="alert.mp3" preload="auto"></audio>
-
 </body>
 </html>
