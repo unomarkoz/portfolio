@@ -226,4 +226,17 @@ h2 {
   .nav-links.show {
     display: flex;
   }
+  #behind-the-scenes {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+#behind-the-scenes.show {
+  opacity: 1;
+  max-height: 1000px; /* adjust as needed */
+}
+
+
 }
