@@ -12,26 +12,30 @@
 
     <div class="input-group">
       <input type="text" id="task-input" placeholder="Enter task" required />
-
       <select id="priority-select">
         <option value="low">⭐ Low</option>
         <option value="medium" selected>⭐⭐ Medium</option>
         <option value="high">⭐⭐⭐ High</option>
       </select>
-
       <div class="datetime-group">
         <input type="date" id="task-date" required />
         <input type="time" id="task-time" required />
       </div>
-
       <button id="add-task">Add Task</button>
+    </div>
+
+    <div class="controls">
+      <select id="sort-select">
+        <option value="default">Sort by Default</option>
+        <option value="date">Sort by Date</option>
+        <option value="priority">Sort by Priority</option>
+      </select>
+      <button id="clear-completed">Clear Completed</button>
     </div>
 
     <ul id="task-list"></ul>
   </div>
 
-  
-  
   <script src="script.js"></script>
   <audio id="alert-sound" src="alert.mp3" preload="auto"></audio>
 </body>
