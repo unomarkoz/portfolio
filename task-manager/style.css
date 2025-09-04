@@ -1,25 +1,34 @@
 /* Base styles */
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #121212;
+  color: #e0e0e0;
   margin: 0;
   padding: 20px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Container */
 .container {
   max-width: 500px;
   margin: auto;
-  background: white;
+  background: #1e1e1e;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
 /* Header */
 h1 {
   text-align: center;
   margin-bottom: 20px;
+  color: #ffcc00;
+}
+
+/* Dark/Light toggle button */
+#toggle-dark-mode {
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 /* Input group */
@@ -30,32 +39,38 @@ h1 {
   margin-bottom: 15px;
 }
 
-/* Inputs */
 input[type="text"],
 input[type="date"],
 input[type="time"],
 select {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #2c2c2c;
+  color: #e0e0e0;
 }
 
-/* Button */
+input::placeholder {
+  color: #aaa;
+}
+
 button {
-  padding: 10px 15px;
+  padding: 12px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #007bff;
-  color: white;
+  background-color: #ffcc00;
+  color: #1e1e1e;
   border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #e6b800;
+  transform: scale(1.05);
 }
 
 /* Controls */
@@ -70,7 +85,7 @@ button:hover {
 .controls select,
 .controls button {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
 }
 
@@ -81,82 +96,101 @@ ul {
 }
 
 li {
-  background: #eee;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 4px;
+  background: #2c2c2c;
+  margin-bottom: 12px;
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  cursor: grab;
+}
+
+li:hover {
+  transform: scale(1.02);
+}
+
+li.completed {
+  text-decoration: line-through;
+  color: #888;
+  background: #333;
+}
+
+/* Task top row */
+.task-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background 0.3s ease;
 }
 
-/* Completed tasks */
-li.completed {
-  text-decoration: line-through;
-  color: gray;
+/* Task text */
+.task-text {
+  font-weight: 500;
+  font-size: 16px;
 }
 
-/* Task actions */
-li button {
+/* Badges */
+.badge {
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.badge.low { background-color: #00cc66; color: #121212; }
+.badge.medium { background-color: #ffa500; color: #121212; }
+.badge.high { background-color: #ff4d4d; color: #121212; }
+
+.countdown {
+  font-size: 0.85rem;
+  color: #ffcc00;
+  margin-top: 4px;
+}
+
+/* Delete button */
+.delete-btn {
+  font-size: 20px;
+  color: #ff6666;
   background: none;
   border: none;
-  font-size: 18px;
   cursor: pointer;
-  color: #333;
 }
 
-li button:hover {
-  color: #007bff;
+.delete-btn:hover {
+  color: #ff0000;
 }
 
 /* Drag and drop */
-.dragging {
-  opacity: 0.5;
-}
+.dragging { opacity: 0.5; }
+.drag-over { border: 2px dashed #ffcc00; }
 
-.drag-over {
-  border: 2px dashed #007bff;
-}
-
-/* Priority indicators */
-.high {
-  border-left: 5px solid green;
-}
-
-.medium {
-  border-left: 5px solid orange;
-}
-
-.low {
-  border-left: 5px solid red;
-}
-
-/* Task content styling */
-li span:first-child {
-  margin-right: 10px;
-  color: gold;
-  font-size: 1.2rem;
-}
-
-li span:nth-child(3) {
-  margin-left: 10px;
-  color: #555;
-  font-size: 0.9rem;
-}
-
-.countdown {
-  margin-left: 10px;
-  font-size: 0.85rem;
-  color: #007bff;
-}
-
-/* Responsive layout for mobile */
+/* Responsive */
 @media (max-width: 500px) {
-  .input-group {
+  .input-group, .controls {
     flex-direction: column;
   }
   input, select, button {
     width: 100%;
   }
+}
+
+/* Light mode */
+body.light-mode {
+  background: #f4f4f4;
+  color: #121212;
+}
+body.light-mode .container { background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+body.light-mode input, body.light-mode select { background: #f0f0f0; color: #121212; }
+body.light-mode button { background-color: #007bff; color: white; }
+body.light-mode li { background: #eee; }
+body.light-mode li.completed { background: #ddd; color: #555; }
+#cancel-filter {
+  background-color: #ff6666;
+  color: white;
+}
+
+#cancel-filter:hover {
+  background-color: #ff0000;
+  transform: scale(1.05);
 }

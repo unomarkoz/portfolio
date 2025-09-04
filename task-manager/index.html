@@ -10,12 +10,14 @@
   <div class="container">
     <h1>📝 Task Manager</h1>
 
+    <button id="toggle-dark-mode">🌙 Toggle Dark Mode</button>
+
     <div class="input-group">
       <input type="text" id="task-input" placeholder="Enter task" required />
       <select id="priority-select">
-        <option value="low">⭐ Low</option>
-        <option value="medium" selected>⭐⭐ Medium</option>
-        <option value="high">⭐⭐⭐ High</option>
+        <option value="low">Low ⭐</option>
+        <option value="medium" selected>Medium ⭐⭐</option>
+        <option value="high">High ⭐⭐⭐</option>
       </select>
       <div class="datetime-group">
         <input type="date" id="task-date" required />
@@ -31,6 +33,8 @@
         <option value="priority">Sort by Priority</option>
       </select>
       <button id="clear-completed">Clear Completed</button>
+      <button id="today-tasks">Today's Tasks</button>
+      <button id="cancel-filter" style="display:none;">Cancel</button>
     </div>
 
     <ul id="task-list"></ul>
