@@ -16,19 +16,30 @@ body {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  position: relative; /* Needed for absolute dark mode icon */
 }
+
+/* Dark mode icon (sticky top-right) */
+.dark-mode-icon {
+  position: sticky;
+  top: 10px;
+  right: 10px;
+  float: right;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 1000;
+}
+
+.dark-mode-icon:hover { transform: scale(1.2); }
 
 /* Header */
 h1 {
   text-align: center;
   margin-bottom: 20px;
   color: #ffcc00;
-}
-
-/* Dark/Light toggle button */
-#toggle-dark-mode {
-  width: 100%;
-  margin-bottom: 15px;
 }
 
 /* Input group */
@@ -53,9 +64,7 @@ select {
   color: #e0e0e0;
 }
 
-input::placeholder {
-  color: #aaa;
-}
+input::placeholder { color: #aaa; }
 
 button {
   padding: 12px;
@@ -83,27 +92,13 @@ button:hover {
 }
 
 .controls select,
-.controls button {
-  flex: 1;
-  padding: 12px;
-  font-size: 16px;
-}
+.controls button { flex: 1; padding: 12px; font-size: 16px; }
 
-#cancel-filter {
-  background-color: #ff6666;
-  color: white;
-}
-
-#cancel-filter:hover {
-  background-color: #ff0000;
-  transform: scale(1.05);
-}
+#cancel-filter { background-color: #ff6666; color: white; }
+#cancel-filter:hover { background-color: #ff0000; transform: scale(1.05); }
 
 /* Task list */
-ul {
-  list-style: none;
-  padding: 0;
-}
+ul { list-style: none; padding: 0; }
 
 /* Task card */
 li {
@@ -119,12 +114,7 @@ li {
 }
 
 li:hover { transform: scale(1.02); }
-
-li.completed {
-  text-decoration: line-through;
-  color: #888;
-  background: #333;
-}
+li.completed { text-decoration: line-through; color: #888; background: #333; }
 
 /* Task top row */
 .task-top {
@@ -134,13 +124,7 @@ li.completed {
   flex-wrap: wrap;
 }
 
-/* Task text */
-.task-text {
-  font-weight: 500;
-  font-size: 16px;
-  flex: 1 1 auto;
-  word-break: break-word;
-}
+.task-text { font-weight: 500; font-size: 16px; flex: 1 1 auto; word-break: break-word; }
 
 /* Badges */
 .badge {
@@ -150,44 +134,17 @@ li.completed {
   font-weight: bold;
   margin-left: 5px;
 }
-
 .badge.low { background-color: #00cc66; color: #121212; }
 .badge.medium { background-color: #ffa500; color: #121212; }
 .badge.high { background-color: #ff4d4d; color: #121212; }
 
 /* Task bottom row */
-.task-bottom {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 5px;
-  gap: 5px;
-}
-
-.countdown {
-  flex: 1 1 50%;
-  min-width: 90px;
-  font-weight: bold;
-  color: #ffcc00;
-}
-
-.task-datetime {
-  flex: 1 1 50%;
-  min-width: 120px;
-  text-align: right;
-  color: #ccc;
-}
+.task-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 5px; gap: 5px; }
+.countdown { flex: 1 1 50%; min-width: 90px; font-weight: bold; color: #ffcc00; }
+.task-datetime { flex: 1 1 50%; min-width: 120px; text-align: right; color: #ccc; }
 
 /* Delete button */
-.delete-btn {
-  font-size: 20px;
-  color: #ff6666;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-left: 5px;
-}
-
+.delete-btn { font-size: 20px; color: #ff6666; background: none; border: none; cursor: pointer; margin-left: 5px; }
 .delete-btn:hover { color: #ff0000; }
 
 /* Drag & drop */
@@ -195,12 +152,7 @@ li.completed {
 .drag-over { border: 2px dashed #ffcc00; }
 
 /* Date/time group for mobile */
-.datetime-group {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
+.datetime-group { display: flex; gap: 10px; flex-wrap: wrap; }
 .datetime-group input { flex: 1 1 45%; min-width: 120px; }
 
 @media (max-width: 400px) {
@@ -211,10 +163,11 @@ li.completed {
 
 /* Light mode */
 body.light-mode {
-  background: #f4f4f4;
-  color: #121212;
+  background: #f4f4f4; color: #121212;
 }
-body.light-mode .container { background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+body.light-mode .container {
+  background: white; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
 body.light-mode input, body.light-mode select { background: #f0f0f0; color: #121212; }
 body.light-mode button { background-color: #007bff; color: white; }
 body.light-mode li { background: #eee; }

@@ -8,9 +8,57 @@
 </head>
 <body>
   <div class="container">
+    <!-- Sticky Dark Mode Toggle -->
+    <button id="toggle-dark-mode" class="dark-mode-icon">🌙</button>
+
     <h1>📝 Task Manager</h1>
 
-    <button id="toggle-dark-mode">🌙 Toggle Dark Mode</button>
+    <div class="input-group">
+      <input type="text" id="task-input" placeholder="Enter task" required />
+      <select id="priority-select">
+        <option value="low">Low ⭐</option>
+        <option value="medium" selected>Medium ⭐⭐</option>
+        <option value="high">High ⭐⭐⭐</option>
+      </select>
+      <div class="datetime-group">
+        <input type="date" id="task-date" required />
+        <input type="time" id="task-time" required />
+      </div>
+      <button id="add-task">Add Task</button>
+    </div>
+
+    <div class="controls">
+      <select id="sort-select">
+        <option value="default">Sort by Default</option>
+        <option value="date">Sort by Date</option>
+        <option value="priority">Sort by Priority</option>
+      </select>
+      <button id="clear-completed">Clear Completed</button>
+      <button id="today-tasks">Today's Tasks</button>
+      <button id="cancel-filter" style="display:none;">Cancel</button>
+    </div>
+
+    <ul id="task-list"></ul>
+  </div>
+
+  <script src="script.js"></script>
+  <audio id="alert-sound" src="alert.mp3" preload="auto"></audio>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Sticky Dark Mode Toggle -->
+    <button id="toggle-dark-mode" class="dark-mode-icon">🌙</button>
+
+    <h1>📝 Task Manager</h1>
 
     <div class="input-group">
       <input type="text" id="task-input" placeholder="Enter task" required />
