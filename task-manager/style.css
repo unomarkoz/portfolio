@@ -89,12 +89,23 @@ button:hover {
   font-size: 16px;
 }
 
+#cancel-filter {
+  background-color: #ff6666;
+  color: white;
+}
+
+#cancel-filter:hover {
+  background-color: #ff0000;
+  transform: scale(1.05);
+}
+
 /* Task list */
 ul {
   list-style: none;
   padding: 0;
 }
 
+/* Task card */
 li {
   background: #2c2c2c;
   margin-bottom: 12px;
@@ -107,9 +118,7 @@ li {
   cursor: grab;
 }
 
-li:hover {
-  transform: scale(1.02);
-}
+li:hover { transform: scale(1.02); }
 
 li.completed {
   text-decoration: line-through;
@@ -122,12 +131,15 @@ li.completed {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 /* Task text */
 .task-text {
   font-weight: 500;
   font-size: 16px;
+  flex: 1 1 auto;
+  word-break: break-word;
 }
 
 /* Badges */
@@ -136,16 +148,34 @@ li.completed {
   border-radius: 8px;
   font-size: 0.8rem;
   font-weight: bold;
+  margin-left: 5px;
 }
 
 .badge.low { background-color: #00cc66; color: #121212; }
 .badge.medium { background-color: #ffa500; color: #121212; }
 .badge.high { background-color: #ff4d4d; color: #121212; }
 
+/* Task bottom row */
+.task-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 5px;
+  gap: 5px;
+}
+
 .countdown {
-  font-size: 0.85rem;
+  flex: 1 1 50%;
+  min-width: 90px;
+  font-weight: bold;
   color: #ffcc00;
-  margin-top: 4px;
+}
+
+.task-datetime {
+  flex: 1 1 50%;
+  min-width: 120px;
+  text-align: right;
+  color: #ccc;
 }
 
 /* Delete button */
@@ -155,24 +185,28 @@ li.completed {
   background: none;
   border: none;
   cursor: pointer;
+  margin-left: 5px;
 }
 
-.delete-btn:hover {
-  color: #ff0000;
-}
+.delete-btn:hover { color: #ff0000; }
 
-/* Drag and drop */
+/* Drag & drop */
 .dragging { opacity: 0.5; }
 .drag-over { border: 2px dashed #ffcc00; }
 
-/* Responsive */
-@media (max-width: 500px) {
-  .input-group, .controls {
-    flex-direction: column;
-  }
-  input, select, button {
-    width: 100%;
-  }
+/* Date/time group for mobile */
+.datetime-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.datetime-group input { flex: 1 1 45%; min-width: 120px; }
+
+@media (max-width: 400px) {
+  .datetime-group input { flex: 1 1 100%; }
+  .task-bottom { flex-direction: column; align-items: flex-start; }
+  .task-datetime { text-align: left; }
 }
 
 /* Light mode */
@@ -185,12 +219,3 @@ body.light-mode input, body.light-mode select { background: #f0f0f0; color: #121
 body.light-mode button { background-color: #007bff; color: white; }
 body.light-mode li { background: #eee; }
 body.light-mode li.completed { background: #ddd; color: #555; }
-#cancel-filter {
-  background-color: #ff6666;
-  color: white;
-}
-
-#cancel-filter:hover {
-  background-color: #ff0000;
-  transform: scale(1.05);
-}
