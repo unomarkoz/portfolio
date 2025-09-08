@@ -17,9 +17,10 @@
 
     <div class="input-group">
       <input type="text" id="task-input" placeholder="Enter task" required />
-      <select id="priority-select">
-        <option value="low">Low ⭐</option>
-        <option value="medium" selected>Medium ⭐⭐</option>
+              <select id="priority-select" required>
+          <option value="" disabled selected hidden>Priority</option>
+          <option value="low">Low ⭐</option>
+        <option value="medium">Medium ⭐⭐</option>
         <option value="high">High ⭐⭐⭐</option>
       </select>
       <div class="datetime-group">
