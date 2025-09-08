@@ -190,7 +190,7 @@ function checkNotifications(){
 
 if(Notification.permission!=='granted') Notification.requestPermission();
 setInterval(updateCountdowns,1000);
-setInterval(checkNotifications,10000);
+setInterval(checkNotifications,1000);
 window.addEventListener('load', loadTasks);
 document.getElementById('back-btn').addEventListener('click', () => {
   window.close();
