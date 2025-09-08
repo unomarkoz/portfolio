@@ -198,3 +198,35 @@ window.addEventListener('load', loadTasks);
 document.getElementById('back-btn').addEventListener('click', () => {
   window.close();
 });
+
+function isDateInputSupported() {
+  var input = document.createElement('input');
+  input.setAttribute('type', 'date');
+  var notADateValue = 'not-a-date';
+  input.setAttribute('value', notADateValue);
+  return (input.value !== notADateValue);
+}
+function isTimeInputSupported() {
+  var input = document.createElement('input');
+  input.setAttribute('type', 'time');
+  var notATimeValue = 'not-a-time';
+  input.setAttribute('value', notATimeValue);
+  return (input.value !== notATimeValue);
+}
+if (!isDateInputSupported() || !isTimeInputSupported()) {
+  alert('Your browser does not support date/time pickers. Please enter date and time in the correct format.');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const dateInput = document.getElementById('task-date');
+  const timeInput = document.getElementById('task-time');
+  if (dateInput) {
+    dateInput.value = new Date().toISOString().split('T')[0];
+  }
+  if (timeInput) {
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+    timeInput.value = `${hh}:${mm}`;
+  }
+});
