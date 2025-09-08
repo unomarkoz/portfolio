@@ -4,22 +4,13 @@ const addTaskBtn = document.getElementById('add-task');
 const prioritySelect = document.getElementById('priority-select');
 const dateInput = document.getElementById('task-date');
 const timeInput = document.getElementById('task-time');
-const alertSound = document.getElementById('alert-sound');
 const clearCompletedBtn = document.getElementById('clear-completed');
 const sortSelect = document.getElementById('sort-select');
 const darkModeBtn = document.getElementById('toggle-dark-mode');
 const todayBtn = document.getElementById('today-tasks');
 const cancelBtn = document.getElementById('cancel-filter');
 
-let audioUnlocked = false;
 let draggedItem = null;
-
-// Unlock audio
-document.body.addEventListener('click', () => {
-  if (!audioUnlocked && alertSound) {
-    alertSound.play().then(()=>{ alertSound.pause(); alertSound.currentTime=0; audioUnlocked=true; }).catch(()=>{});
-  }
-},{ once:true });
 
 // Dark mode toggle
 darkModeBtn.addEventListener('click', ()=>{
@@ -41,13 +32,11 @@ addTaskBtn.addEventListener('click', ()=>{
   saveTasks();
 });
 
-// Toggle complete on click
-taskList.addEventListener('click',(e)=>{
-  if(e.target.classList.contains('task-text')){
-    const li=e.target.closest('li');
-    li.classList.toggle('completed'); saveTasks();
-  }
-});
+// Toggle complete state for a task
+function toggleTaskCompleted(li) {
+  li.classList.toggle('completed');
+  saveTasks();
+}
 
 // Edit task on double-click
 taskList.addEventListener('dblclick',(e)=>{
@@ -178,7 +167,6 @@ function updateCountdowns(){
 function showNotification(taskText){
   if(Notification.permission==='granted'){
     new Notification('Task Reminder',{body:`It's time for: ${taskText}`,icon:'🕒'});
-    if(audioUnlocked && alertSound) alertSound.play().catch(()=>{});
   }
 }
 
@@ -190,12 +178,20 @@ function checkNotifications(){
     const diff=new Date(datetime)-now;
     const taskText=li.querySelector('.task-text').textContent;
     if(diff<=0 && !li.classList.contains('notified')){
-      showNotification(taskText); li.classList.add('notified');
+      showNotification(taskText);
+      li.classList.add('notified');
+      // Only toggle if not already completed
+      if (!li.classList.contains('completed')) {
+        toggleTaskCompleted(li);
+      }
     }
   });
 }
 
 if(Notification.permission!=='granted') Notification.requestPermission();
 setInterval(updateCountdowns,1000);
-setInterval(checkNotifications,30000);
+setInterval(checkNotifications,10000);
 window.addEventListener('load', loadTasks);
+document.getElementById('back-btn').addEventListener('click', () => {
+  window.close();
+});
