@@ -28,7 +28,10 @@ addTaskBtn.addEventListener('click', ()=>{
   const datetime=`${date}T${time}`;
   const li=createTaskElement(text,priority,datetime);
   taskList.appendChild(li);
-  taskInput.value=''; dateInput.value=''; timeInput.value='';
+  taskInput.value='';
+  dateInput.value='';
+  timeInput.value='';
+  prioritySelect.value = ""; // <-- Reset to "Priority"
   saveTasks();
 });
 
