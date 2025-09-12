@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="container">
+    <div class="top-bar">
+      <button id="back-btn">&#8592;</button>
+      <button id="toggle-dark-mode" class="dark-mode-icon">🌙</button>
+    </div>
+    <h1>Weather App</h1>
+    <input type="text" id="cityInput" placeholder="Enter city name" />
+    <div class="button-group">
+  <button onclick="getWeather()">Search</button>
+  <button onclick="clearWeather()">Clear</button>
+</div>
+
+    <div id="weatherDisplay"></div>
+    <div id="loader" class="spinner hidden"></div>
+  </div>
+  <div id="forecastSection">
+  <h3>3-Day Forecast</h3>
+  <div id="forecastDisplay" class="forecast-grid">
+    <div class="day placeholder">
+      <h4>Day 1</h4>
+      <p>Condition: --</p>
+      <p>Temp: --°C</p>
+    </div>
+    <div class="day placeholder">
+      <h4>Day 2</h4>
+      <p>Condition: --</p>
+      <p>Temp: --°C</p>
+    </div>
+    <div class="day placeholder">
+      <h4>Day 3</h4>
+      <p>Condition: --</p>
+      <p>Temp: --°C</p>
+    </div>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
